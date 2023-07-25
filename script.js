@@ -1,6 +1,7 @@
 const itemForm = document.querySelector('#item-form');
 const itemInput = document.querySelector('#item-input');
 const itemList = document.querySelector('#item-list');
+const clearBtn = document.querySelector('#clear');
 
 
 function addItem(e) {
@@ -41,5 +42,21 @@ function createIcon(classes) {
   return icon;
 }
 
+function removeItem(e) {
+  if (e.target.parentElement.classList.contains('remove-item')) {
+    e.target.parentElement.parentElement.remove();
+  }
+}
+
+function clearItems(e) {
+  while (itemList.firstChild) {
+    itemList.removeChild(itemList.firstChild);
+  }
+}
+
 // Event Listeners
 itemForm.addEventListener('submit', addItem);
+
+itemList.addEventListener('click', removeItem);
+
+clearBtn.addEventListener('click', clearItems);
